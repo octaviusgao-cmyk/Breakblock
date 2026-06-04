@@ -10,6 +10,13 @@ float vx, vy;
 float ballx, bally, balld;
 float leftx, lefty, leftd;
 float a;
+float brickd;
+int n;
+int tempx, tempy;
+
+//brick variables
+int[] x;  //declaration
+int[] y;
 
 boolean akey, dkey;
 void setup() {
@@ -23,16 +30,38 @@ void setup() {
   
   a = 10;
  
+  brickd = 50;
+  n = 40;
   
   ballx = width/2;
   bally = height/2;
-  balld = 50;
+  balld = 20;
   
   leftx = 450;
   lefty = 900;
   leftd = 150;
   
-  vy = random(-5, 5);
+  vy = random(5, 10);
+  
+  //array of bricks
+  x = new int[n];  //instantiation
+  y = new int[n];
+  tempx = 100;
+  tempy = 100;
+  
+  int i = 0;
+  while (i < n) {
+    x[i] = tempx;
+    y[i] = tempy;
+    tempx = tempx + 100;
+    if (tempx == width) {
+      tempx = 100;
+      tempy = tempy + 100;
+    }
+    i++;
+  }
+
+
 }
   
   void draw() {
