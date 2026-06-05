@@ -1,26 +1,16 @@
 void game() {
-  background(0);
+  background(gray);
   stroke(0);
   fill(255);
   circle(leftx, lefty, leftd);
 
   //bricks
-  circle(x[0], y[0], brickd);
-  circle(x[1], y[1], brickd);
-  circle(x[2], y[2], brickd);
+
 
   int i = 0;
   while (i < n) {
-    if (y[i] == 100) fill(255); 
-    if (y[i] == 200) fill(0);
-    if (y[i] == 300) fill(50);
-    if (y[i] == 400) fill(9);
-    if (y[i] == 500) fill(0);
-    
-    circle(x[i], y[i], brickd);
-    if (dist(ballx, bally, x[i], y[i]) <= brickd/2 + balld/2) {
-      vx = (ballx - x[i])/5;
-      vy = (bally - y[i])/5;
+    if (alive[i] == true) {
+      manageBrick(i);
     }
     i++;
   }
@@ -51,4 +41,20 @@ void game() {
 
 
 void gameClicks() {
+}
+
+void manageBrick (int i) {
+
+  if (y[i] == 100) fill(red);
+  if (y[i] == 200) fill(white);
+  if (y[i] == 300) fill(red);
+  if (y[i] == 400) fill(darkred);
+  if (y[i] == 500) fill(blue);
+
+  circle(x[i], y[i], brickd);
+  if (dist(ballx, bally, x[i], y[i]) <= brickd/2 + balld/2) {
+    vx = (ballx - x[i])/5;
+    vy = (bally - y[i])/5;
+    alive[i] = false;
+  }
 }

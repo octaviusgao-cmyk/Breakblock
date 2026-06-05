@@ -14,13 +14,22 @@ float brickd;
 int n;
 int tempx, tempy;
 
+//colors
+color gray = #8b969c;
+color white = #dce1e5;
+color red = #ad1d1a;
+color darkred = #8B160D;
+color blue = #276079;
+
+
 //brick variables
 int[] x;  //declaration
 int[] y;
 
+boolean[] alive;
 boolean akey, dkey;
 void setup() {
-  background(0);
+  background(#24DEB1);
   
   textAlign(CENTER);
   imageMode(CENTER);
@@ -46,6 +55,8 @@ void setup() {
   //array of bricks
   x = new int[n];  //instantiation
   y = new int[n];
+  alive = new boolean[n];
+  
   tempx = 100;
   tempy = 100;
   
@@ -53,6 +64,7 @@ void setup() {
   while (i < n) {
     x[i] = tempx;
     y[i] = tempy;
+    alive[i] = true;
     tempx = tempx + 100;
     if (tempx == width) {
       tempx = 100;
@@ -60,7 +72,6 @@ void setup() {
     }
     i++;
   }
-
 
 }
   
