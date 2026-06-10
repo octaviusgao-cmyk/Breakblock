@@ -5,7 +5,7 @@ void game() {
   circle(leftx, lefty, leftd);
 
   //bricks
-
+  
 
   int i = 0;
   while (i < n) {
@@ -37,10 +37,26 @@ void game() {
   //move paddle
   if (akey == true) leftx = leftx - 15;
   if (dkey == true) leftx = leftx + 15;
+  
+  if (bally > 900) {
+    lives = lives - 1;
+    bally = width/2;
+    ballx = height/2;
+  }
+  fill(blue);
+  text("Score: " + score, 200, 700);
+  text("Lives: " + lives, 200, 800);
+  if (lives == 0) {
+    mode = gameover;
+  }
+  if (score == 1) {
+    mode = gameover;
+  }
 }
 
 
 void gameClicks() {
+  mode = pause;
 }
 
 void manageBrick (int i) {
@@ -56,5 +72,6 @@ void manageBrick (int i) {
     vx = (ballx - x[i])/5;
     vy = (bally - y[i])/5;
     alive[i] = false;
+    score++;
   }
 }
